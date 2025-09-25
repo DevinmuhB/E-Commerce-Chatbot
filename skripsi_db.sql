@@ -969,8 +969,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `telepon`, `password`, `role`) VALUES
 (1, 'admin', 'admin@example.com', '081234567890', '0192023a7bbd73250516f069df18b500', 'admin'),
 (2, 'user', 'user@gmail.com', '81325469780', '6ad14ba9986e3615423dfca256d04e3f', 'user'),
-(3, 'Vinsss', 'bomsdevin@gmail.com', NULL, '', 'user'),
-(5, 'devin', 'devinbomas@gmail.com', '081209874567', '210655067935d53e0e3c5bc7a10e988a', 'user');
+(3, 'devin', 'devinbomas@gmail.com', '081209874567', '210655067935d53e0e3c5bc7a10e988a', 'user');
 
 --
 -- Indexes for dumped tables
