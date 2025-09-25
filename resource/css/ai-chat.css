@@ -1,0 +1,512 @@
+/* AI Chat Styling */
+#chatButton {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #ff3737 60%, #ff7b54 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    z-index: 10000;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chatButton:hover {
+    box-shadow: 0 10px 32px rgba(255,55,55,0.25);
+    transform: scale(1.08);
+    background: linear-gradient(135deg, #ff7b54 60%, #ff3737 100%);
+}
+
+#chatButton i {
+    font-size: 30px;
+    color: #fff;
+}
+
+#chatBox {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 32px;
+    width: 400px;
+    height: 500px;
+    max-height: calc(100vh - 140px);
+    background: #1a1d24;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    overflow: hidden;
+    z-index: 9999;
+    flex-direction: column;
+    color: #fff;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    animation: chatboxIn 0.3s cubic-bezier(.4,2,.6,1) forwards;
+}
+
+@keyframes chatboxIn {
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#chatHeader {
+    background: linear-gradient(90deg, #ff3737 70%, #ff7b54 100%);
+    color: white;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+#chatHeader span {
+    font-size: 20px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#chatHeader span:hover { 
+    opacity: 1; 
+}
+
+/* Styling khusus untuk tombol close */
+.close-button {
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+}
+
+.close-button:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+#chatMessages {
+    flex: 1;
+    padding: 18px 14px 12px 14px;
+    overflow-y: auto;
+    font-size: 15px;
+    background: #1a1d24;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+}
+
+.message {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin: 0 0 4px 0;
+}
+
+.message.user { 
+    flex-direction: row-reverse; 
+}
+
+.message.ai { 
+    flex-direction: row; 
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ff3737;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255,55,55,0.10);
+    flex-shrink: 0;
+}
+
+.message.user .avatar {
+    background: linear-gradient(135deg, #ff7b54 60%, #ff3737 100%);
+}
+
+.message.ai .avatar {
+    background: linear-gradient(135deg, #2d3748 60%, #ff3737 100%);
+}
+
+.avatar i {
+    font-size: 20px;
+    color: #fff;
+}
+
+.bubble {
+    padding: 14px 18px;
+    border-radius: 18px;
+    max-width: 80%;
+    font-size: 15px;
+    line-height: 1.6;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    word-break: break-word;
+}
+
+.message.user .bubble {
+    background: linear-gradient(135deg, #ff7b54 60%, #ff3737 100%);
+    color: #fff;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 18px;
+}
+
+.message.ai .bubble {
+    background: #2d3748;
+    color: #ffffff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 18px;
+}
+
+/* Styling untuk konten AI response */
+.message.ai .bubble h1, 
+.message.ai .bubble h2, 
+.message.ai .bubble h3, 
+.message.ai .bubble h4, 
+.message.ai .bubble h5, 
+.message.ai .bubble h6 {
+    color: #ffffff !important;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.message.ai .bubble p {
+    color: #e2e8f0 !important;
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message.ai .bubble div {
+    color: #e2e8f0 !important;
+}
+
+/* Styling untuk product cards */
+.message.ai .bubble .product-card {
+    background: #2d3748;
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 16px 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.message.ai .bubble .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+.message.ai .bubble .product-card .category-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 0 16px 0 12px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.message.ai .bubble .product-card .product-image {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.message.ai .bubble .product-card .product-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.message.ai .bubble .product-card .product-image img:hover {
+    transform: scale(1.05);
+}
+
+.message.ai .bubble .product-card .product-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.message.ai .bubble .product-card .product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.message.ai .bubble .product-card .product-price {
+    font-size: 18px;
+    color: #27ae60;
+    font-weight: 800;
+}
+
+.message.ai .bubble .product-card .product-stock {
+    background: #007bff;
+    color: #27ae60;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.message.ai .bubble .product-card .product-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+}
+
+.message.ai .bubble .product-card .product-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+}
+
+/* Styling untuk keranjang cards */
+.message.ai .bubble .cart-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 16px;
+    padding: 18px;
+    margin: 16px 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.message.ai .bubble .cart-card .cart-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.message.ai .bubble .cart-card .cart-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.message.ai .bubble .cart-card .cart-image {
+    position: relative;
+}
+
+.message.ai .bubble .cart-card .cart-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.message.ai .bubble .cart-card .cart-image img:hover {
+    transform: scale(1.1);
+}
+
+.message.ai .bubble .cart-card .cart-quantity {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.message.ai .bubble .cart-card .cart-details {
+    flex: 1;
+}
+
+.message.ai .bubble .cart-card .cart-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.message.ai .bubble .cart-card .cart-price {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 4px;
+}
+
+.message.ai .bubble .cart-card .cart-quantity-text {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 8px;
+}
+
+.message.ai .bubble .cart-card .cart-total {
+    font-size: 16px;
+    color: #27ae60;
+    font-weight: 800;
+}
+
+.message.ai .bubble .cart-card .cart-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.message.ai .bubble .cart-card .cart-button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.message.ai .bubble .cart-card .cart-button.view {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    box-shadow: 0 4px 12px rgba(40,167,69,0.3);
+}
+
+.message.ai .bubble .cart-card .cart-button.add {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+}
+
+.message.ai .bubble .cart-card .cart-button:hover {
+    transform: translateY(-2px);
+}
+
+#chatInputArea {
+    display: flex;
+    border-top: 1px solid #353a45;
+    background: #222831;
+    padding: 10px 12px;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 10px 14px;
+    border: none;
+    font-size: 15px;
+    background-color: #2c323c;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+#chatInput:focus {
+    box-shadow: 0 0 0 2px #ff3737;
+}
+
+#chatInput::placeholder { 
+    color: #bbb; 
+}
+
+#sendButton {
+    background: linear-gradient(135deg, #ff3737 60%, #ff7b54 100%);
+    color: white;
+    border: none;
+    padding: 0 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(255,55,55,0.10);
+}
+
+#sendButton:hover {
+    background: linear-gradient(135deg, #ff7b54 60%, #ff3737 100%);
+}
+
+.typing {
+    display: inline-block;
+    font-size: 15px;
+    color: #ff7b54;
+    margin: 8px 0 0 0;
+    padding-left: 8px;
+}
+
+.ai-message .meta-info {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+    #chatBox { 
+        width: 96%; 
+        right: 2%; 
+        bottom: 80px; 
+        height: 70vh;
+        max-height: 70vh;
+    }
+    
+    #chatButton { 
+        width: 52px; 
+        height: 52px; 
+        font-size: 20px; 
+    }
+} 
